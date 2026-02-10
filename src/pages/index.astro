@@ -13,7 +13,11 @@ const blogData = await getCollection("blog");
   <div class="content">
     {
       blogData?.map((blog) => {
-        return <a href={blog?.id?.replace("lmg/", "")}>{blog?.id}</a>;
+        return (
+          <a href={blog?.id?.replace("lmg/", "")} data-astro-prefetch>
+            {blog?.id}
+          </a>
+        );
       })
     }
   </div>
