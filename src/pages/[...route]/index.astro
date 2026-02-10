@@ -1,0 +1,36 @@
+---
+import { render } from "astro:content";
+import { getCollection } from "astro:content";
+import DefaultLayout from "../../layout/default-layout.astro";
+
+export async function getStaticPaths() {
+  const datas = await getCollection("blog");
+
+  return datas?.map((post) => {
+    const pageId = post?.id?.replace("lmg/", "");
+    return {
+      params: { route: pageId },
+      props: { post },
+    };
+  });
+}
+
+const { route } = Astro.params;
+const { post } = Astro.props;
+
+if (!post) {
+  return Astro.redirect("/404", 404);
+}
+
+const { Content } = await render(post);
+---
+
+<DefaultLayout>
+  <div class="header">
+    <h4># Visiting {route}</h4>
+  </div>
+
+  <div class="content">
+    <Content />
+  </div>
+</DefaultLayout>

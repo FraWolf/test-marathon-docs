@@ -1,0 +1,14 @@
+body {
+  margin: unset;
+}
+
+.header {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: 1px 0.75rem;
+}
+
+.content {
+  padding: .5rem;
+}
