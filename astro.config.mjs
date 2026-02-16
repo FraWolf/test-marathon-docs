@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 
 import cloudflare from "@astrojs/cloudflare";
+import { fixImagePath } from "./src/utils";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,4 +14,7 @@ export default defineConfig({
 
     imageService: "cloudflare",
   }),
+  markdown: {
+    rehypePlugins: [fixImagePath],
+  },
 });
